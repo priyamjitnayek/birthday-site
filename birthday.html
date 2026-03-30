@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Birthday Surprise</title>
+
+    <style>
+        body {
+            background: black;
+            color: #00ff99;
+            font-family: monospace;
+            text-align: center;
+            padding: 22px;
+            overflow: hidden;
+        }
+
+        #terminal {
+            white-space: pre-line;
+            font-size: 20px;
+        }
+
+        #final {
+            display: none;
+            color: pink;
+            margin-top: 40px;
+        }
+
+        img {
+            width: 200px;
+            border-radius: 22px;
+            margin-top: 22px;
+        }
+
+        #countdown {
+            font-size: 22px;
+            margin-top: 15px;
+            color: yellow;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    
+<audio id="music" loop>
+    <source src="c:\Birthday\music.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<div id="terminal"></div>
+
+<div id="final">
+    <h2>Happiest Birthday Sowmya❤️</h2>
+    <img src="c:\Birthday\photo.jpg.jpeg" alt="Her Photo">
+    <div id="countdown"></div>
+
+    <p> 
+        Aaj ka din sirf tumhara nahi… mera bhi hai, kyunki aaj ke din meri duniya iss duniya mein aayi thi💖 
+        18 saal pehle shayad kisi ne socha bhi nahi hoga ki ek din tum kisi ki poori life ban jaogi… aur woh lucky insaan main hoon🥺❤️ 
+
+        Sach bolu toh tum sirf meri girlfriend nahi ho… tum meri aadat ban chuki ho, meri zarurat ho, meri har subah ka reason aur har raat ka sukoon ho✨
+        Tumhare bina sab kuch khaali sa lagta hai… jaise dil hai par dhadkan nahi💔
+
+        Mujhe tumhari har choti si baat se pyaar hai... tumhari hasi, tumhari baatein, tumhara gussa bhi… sab kuch😌
+        Aur jab tum muskuraati ho na… kasam se, lagta hai poori duniya perfect ho gayi hai😊💖
+
+        Main promise karta hoon… chahe life kitni bhi badal jaaye, log kitne bhi aa jaayein ya chale jaayein… main hamesha tumhare saath rahunga... tumhare paas, tumhare liye, sirf tumhara banke❤️
+
+        Tum meri sirf aaj nahi… meri kal bhi ho, meri future bhi ho, meri forever wali mohabbat ho💍✨
+
+        I love you itna ki shayad main kabhi words mein explain hi nahi kar paunga…<br>
+        Happy 18th Birthday meri life, meri jaan, meri sab kuch❤️✨
+    </p>
+</div>
+
+<script>
+document.body.addEventListener("click", function () {
+    document.getElementById("music").play();
+}, { once: true });
+let text = [
+    "Connecting to Birthday Server...",
+    "Decrypting Feelings...",
+    "Loading Special Memories...",
+    "Launching Surprise..."
+];
+let i = 0, j = 0, current = "";
+function typeEffect() {
+    if (i < text.length) {
+        if (j < text[i].length) {
+            current += text[i][j];
+            document.getElementById("terminal").innerHTML = current;
+            j++;
+            setTimeout(typeEffect, 40);
+        } else {
+            current += "\\n";
+            i++;
+            j = 0;
+            setTimeout(typeEffect, 400);
+        }
+    } else {
+        setTimeout(showFinal, 1000);
+    }
+}
+function showFinal() {
+    document.getElementById("terminal").style.display = "none";
+    document.getElementById("final").style.display = "block";
+    startCountdown();
+    createHearts();
+}
+function startCountdown() {
+    let midnight = new Date();
+    midnight.setHours(24,0,0,0);
+    setInterval(() => {
+        let diff = midnight - new Date();
+        let h = Math.floor(diff / (1000*60*60));
+        let m = Math.floor((diff / (1000*60)) % 60);
+        let s = Math.floor((diff / 1000) % 60);
+        document.getElementById("countdown").innerHTML =
+            "" + h + "h " + m + "m " + s + "s";
+    }, 1000);
+}
+function createHearts() {
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+}
+typeEffect();
+</script>
+
+</body>
+</html>
